@@ -21,8 +21,8 @@ import com.example.demo.entity.User;
 public class UserRest {
 	@Autowired
 	private UserRepository userRepository;
-	@Autowired
-	private RoleRepository roleRepository;
+	//@Autowired
+	//private RoleRepository roleRepository;
 	
 	@PostMapping( value = "/adduser")
 	public User save( User user) {
@@ -35,31 +35,31 @@ public class UserRest {
 		return userRepository.findAll();
 
 	}
-	@PostMapping(value = "/addrole")
-	public Role saveRole( Role role) {
-		return roleRepository.save(role);
-
-	}
-	@GetMapping(value = "/listrole")
-	public List<Role> findAllRole() {
-		return roleRepository.findAll();
-
-	}
-
-	@GetMapping(value="/getrole/{role}")
-	public Role findById(@PathVariable String role) {
-		return roleRepository.findById(role).get();
-			
-	}
-	@PostMapping(value = "/addroletouser")
-	public User addRoleTUser( int iduser,String role){
-		User user=userRepository.findById(iduser).get();
-		Role role2=roleRepository.findById(role).get();
-		user.getRoles().add(role2);
-		userRepository.save(user);
-		return user;
-		
-	}
+//	@PostMapping(value = "/addrole")
+//	public Role saveRole( Role role) {
+//		return roleRepository.save(role);
+//
+//	}
+//	@GetMapping(value = "/listrole")
+//	public List<Role> findAllRole() {
+//		return roleRepository.findAll();
+//
+//	}
+//
+//	@GetMapping(value="/getrole/{role}")
+//	public Role findById(@PathVariable String role) {
+//		return roleRepository.findById(role).get();
+//			
+//	}
+//	@PostMapping(value = "/addroletouser")
+//	public User addRoleTUser( int iduser,String role){
+//		User user=userRepository.findById(iduser).get();
+//		Role role2=roleRepository.findById(role).get();
+//		user.getRoles().add(role2);
+//		userRepository.save(user);
+//		return user;
+//		
+//	}
 
 	@GetMapping(value="/getuser/{id}")
 	public User findById(@PathVariable int id) {

@@ -80,10 +80,10 @@ public class Personnels implements Serializable {
 	private String date_Fin_Contrat;
     @JoinColumn(name="Situation_Familiale")
 	private String situation_Familiale;
-    @JoinColumn(name="Enfant_à_charger")
-	private int enfant_à_charger;
+    @JoinColumn(name="enfants", nullable = true)
+	private int enfants=0;
     @JoinColumn(name="Diplôme")
-    private String diplôme;
+    private String diplome;
     private String role;
 	@JsonIgnore
 	@OneToOne (cascade = CascadeType.ALL)
@@ -126,7 +126,7 @@ public class Personnels implements Serializable {
 			Date date_de_Naissance, String lieu, String genre, int numero_Telephone, int numero_Mobile, String e_mail,
 			Date date_Embauche, String photo_Personnel, String adresse_Personnel, String code_Postal, String ville,
 			String pays, String numero_CNSS, String type_Contrat, String date_Fin_Contrat, String situation_Familiale,
-			int enfant_à_charger, String diplôme,String role) {
+			int enfants, String diplôme,String role) {
 		super();
 		this.matricule = matricule;
 		this.nom = nom;
@@ -149,8 +149,8 @@ public class Personnels implements Serializable {
 		this.type_Contrat = type_Contrat;
 		this.date_Fin_Contrat = date_Fin_Contrat;
 		this.situation_Familiale = situation_Familiale;
-		this.enfant_à_charger = enfant_à_charger;
-		this.diplôme = diplôme;
+		this.enfants = enfants;
+		this.diplome = diplôme;
 		this.role = role;
 	}
 	public Long getId_Personnels() {
@@ -285,17 +285,17 @@ public class Personnels implements Serializable {
 	public void setSituation_Familiale(String situation_Familiale) {
 		this.situation_Familiale = situation_Familiale;
 	}
-	public int getEnfant_à_charger() {
-		return enfant_à_charger;
+	public int getenfants() {
+		return enfants;
 	}
-	public void setEnfant_à_charger(int enfant_à_charger) {
-		this.enfant_à_charger = enfant_à_charger;
+	public void setenfants(int enfants) {
+		this.enfants = enfants;
 	}
 	public String getDiplôme() {
-		return diplôme;
+		return diplome;
 	}
-	public void setDiplôme(String diplôme) {
-		this.diplôme = diplôme;
+	public void setDiplôme(String diplome) {
+		this.diplome = diplome;
 	}
 	
 	public String getRole() {
@@ -333,6 +333,35 @@ public class Personnels implements Serializable {
 	}
 	public void setDepartements(Departements departements) {
 		this.departements = departements;
+	}
+	@Override
+	public String toString() {
+		return "Personnels [" + (id_Personnel != null ? "id_Personnel=" + id_Personnel + ", " : "")
+				+ (matricule != null ? "matricule=" + matricule + ", " : "") + (nom != null ? "nom=" + nom + ", " : "")
+				+ (prenom != null ? "prenom=" + prenom + ", " : "")
+				+ (numero_CIN != null ? "numero_CIN=" + numero_CIN + ", " : "") + "mois_de_Naissance="
+				+ mois_de_Naissance + ", "
+				+ (date_de_Naissance != null ? "date_de_Naissance=" + date_de_Naissance + ", " : "")
+				+ (lieu != null ? "lieu=" + lieu + ", " : "") + (genre != null ? "genre=" + genre + ", " : "")
+				+ "numero_Telephone=" + numero_Telephone + ", numero_Mobile=" + numero_Mobile + ", "
+				+ (e_mail != null ? "e_mail=" + e_mail + ", " : "")
+				+ (date_Embauche != null ? "date_Embauche=" + date_Embauche + ", " : "")
+				+ (photo_Personnel != null ? "photo_Personnel=" + photo_Personnel + ", " : "")
+				+ (adresse_Personnel != null ? "adresse_Personnel=" + adresse_Personnel + ", " : "")
+				+ (code_Postal != null ? "code_Postal=" + code_Postal + ", " : "")
+				+ (ville != null ? "ville=" + ville + ", " : "") + (pays != null ? "pays=" + pays + ", " : "")
+				+ (numero_CNSS != null ? "numero_CNSS=" + numero_CNSS + ", " : "")
+				+ (type_Contrat != null ? "type_Contrat=" + type_Contrat + ", " : "")
+				+ (date_Fin_Contrat != null ? "date_Fin_Contrat=" + date_Fin_Contrat + ", " : "")
+				+ (situation_Familiale != null ? "situation_Familiale=" + situation_Familiale + ", " : "")
+				+ "enfants=" + enfants + ", " + (diplome != null ? "diplome=" + diplome + ", " : "")
+				+ (role != null ? "role=" + role + ", " : "")
+				+ (experiance != null ? "experiance=" + experiance + ", " : "")
+				+ (conge != null ? "conge=" + conge + ", " : "")
+				+ (fonctions != null ? "fonctions=" + fonctions + ", " : "")
+				+ (salaires != null ? "salaires=" + salaires + ", " : "")
+				+ (departements != null ? "departements=" + departements + ", " : "")
+				+ (assurances != null ? "assurances=" + assurances : "") + "]";
 	}
 	
 	

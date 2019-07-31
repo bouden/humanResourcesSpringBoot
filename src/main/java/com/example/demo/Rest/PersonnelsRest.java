@@ -2,6 +2,8 @@ package com.example.demo.Rest;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.GestionRhApplication;
 import com.example.demo.Repository.DepartementRepository;
 import com.example.demo.Repository.ExperiancesRepository;
 import com.example.demo.Repository.PersonnelsRepository;
@@ -26,8 +29,10 @@ import com.example.demo.entity.Salaires;
 
 @RestController
 @RequestMapping("/personnels")
-@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:4200")
 public class PersonnelsRest {
+	private static final Logger logger=LogManager.getLogger(PersonnelsRest.class);
+
 	@Autowired
 	private PersonnelsRepository personnelsRepository;
 	@Autowired
@@ -39,6 +44,10 @@ public class PersonnelsRest {
 	@PostMapping("add/{idDept}/{idExperiance}/{idsal}") 
 			public void save(@RequestBody Personnels personnel, @PathVariable Long idDept,@PathVariable Long idExperiance ,@PathVariable Long idsal)
 			{
+			
+	
+		logger.info("create user " + personnel);
+		
 			Experiances e = new Experiances();
 			Salaires s=new Salaires();
 			Departements d = new Departements();
@@ -70,7 +79,9 @@ public class PersonnelsRest {
 				personnelsRepository.save(personnel);
 				
 			}
+	
 	@GetMapping(value = "/listpersonnels")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public List<Personnels> findAllPersonnels() {
 		return personnelsRepository.findAll();
 }

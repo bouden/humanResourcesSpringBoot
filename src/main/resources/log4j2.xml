@@ -17,13 +17,13 @@
    </Appenders>
 
    <Loggers>
-      <Logger name="com.boraji.tutorial" level="debug"
+      <Logger name="com.boraji.tutorial" level="info"
          additivity="false">
          <AppenderRef ref="Console" />
          <AppenderRef ref="MySQLDatabase" />
       </Logger>
 
-      <Root level="trace">
+      <Root level="info">
          <AppenderRef ref="Console" />
          <AppenderRef ref="MySQLDatabase" />
       </Root>
